@@ -19,7 +19,13 @@ func hanleFunc(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func aboutHanlerFunc(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html;charset=utf-8")
+	fmt.Fprintln(w, "此博客是用以记录编程笔记，如您有反馈或建议，请联系")
+}
+
 func main() {
 	http.HandleFunc("/", hanleFunc)
+	http.HandleFunc("/how", aboutHanlerFunc)
 	http.ListenAndServe(":3000", nil)
 }
